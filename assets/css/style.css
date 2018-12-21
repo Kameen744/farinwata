@@ -1,0 +1,116 @@
+nav {
+    border-top: 4px solid #dc3545;
+}
+.fixed-bottom {
+    border-bottom: 4px solid #dc3545;
+}
+body {
+    background: rgba(0,0,0,0.1);
+}
+.li {
+    list-style: none;
+}
+.navbar-nav {
+    float:none;
+    margin:0 auto;
+    display: block;
+    text-align: center;
+}
+.navbar-nav > li {
+    display: inline-block;
+    float:none;
+    margin-left: 10px;
+}
+.navbar-nav > li:hover{
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+    border-radius: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.navbar-nav > li > a {
+    color:white !important;
+    font-weight: border !important;
+}
+.main-bg {
+    background-image: linear-gradient(rgba(0,0,0,0.98),rgba(0,0,0,0.9), rgba(0,0,0,0.8), rgba(0,0,0,0.7),rgba(0,0,0,0.05));
+}
+.main-bgnd {
+    background-image: linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.7), rgba(0,0,0,0.83),rgba(0,0,0,0.97));
+}
+.imagenews {
+    position: absolute;
+    bottom: 0px;
+    width: 100% !important;
+    /* background: rgba(19, 18, 18, 0.8); */
+    background-image: linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.7), rgba(0,0,0,0.83),rgba(0,0,0,0.97));
+}
+.imagenews:hover {
+    text-decoration: none;
+    text-decoration-color: black;
+    color: orange;
+}
+
+.nws-tag {
+    position:relative;
+    display:inline-block;
+}
+.notify-badge-in{
+    position: absolute;
+    right:0px;
+    top:0px;
+    background:#dc3545;
+    text-align: center;
+    color:white;
+    padding:1px 5px;
+    font-size:15px;
+}
+.notify-badge-out{
+    position: absolute;
+    right:-30px;
+    top:-18px;
+    background:#dc3545;
+    text-align: center;
+    color:white;
+    padding:1px 5px;
+    font-size:15px;
+}
+.notify-badge-con{
+    position: absolute;
+    /* right:-50vw; */
+    top:-18px;
+    background:#dc3545;
+    text-align: center;
+    color:white;
+    padding:1px 5px;
+    font-size:15px;
+}
+
+#marquee{
+    overflow: hidden;
+    white-space: nowrap;
+    width: 90%;
+  }
+  
+#marquee > li {
+    display: inline-block;
+    animation: marquee 10s linear infinite;
+    margin-left: 20px;
+    font-size: 20px;
+}
+  
+  @keyframes marquee {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
+  @keyframes marquee2 {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(-200%);
+    }
+  }
