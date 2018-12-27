@@ -124,6 +124,22 @@
             }
         }
 
+        public function delete_category() {
+            if($this->session->userdata('admin_name')) {
+                if(isset($_POST['delCatTypeId']) & isset($_POST['delCatId'])){
+                    $delCatTypeId = $_POST['delCatTypeId']; 
+                    $delCatId = $_POST['delCatId'];
+                    $ins = $this->Manage_model->delete_category($delCatId);
+                    if($ins) {
+                        $get = $this->Post_model->get_category($delCatTypeId);
+                        $this->load->view('admin/manage_categories', ['categories' => $get]);
+                    }
+                }
+            }else{
+                redirect('admin');
+            }
+        }
+
         public function logout() {
             $this->session->unset_userdata('id');
             $this->session->unset_userdata('admin_name');

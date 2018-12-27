@@ -31,11 +31,22 @@
         }
 
         public function add_category ($type, $cat) {
-            $data = ['type' => $type, 'cat' => $cat];
-            $ins = $this->db->insert('category', $data);
-            if($ins) {
+echo $type .' : ' .$cat;
+            // $ins = $this->db->insert('category', ['Categories' => $type, 'News_Type_id' => $cat]);
+            // print_r($ins);
+            // if($ins) {
+            //     return TRUE;
+            // } else {
+            //     return FALSE;
+            // }
+        
+        }
+
+        public function delete_category ($id) {
+            $this->db->where('id', $id);
+            if($this->db->delete('category')){
                 return TRUE;
-            } else {
+            }else{
                 return FALSE;
             }
         }

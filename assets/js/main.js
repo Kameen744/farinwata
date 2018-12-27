@@ -71,7 +71,15 @@ $(document).on('change', '#catType', function () {
 // manage categories add new category
 $(document).on('click', '#catAdd', function () {
   var post = new ajxobj ('/farinwatab/admin/add_category/', 'POST', 'HTML', 
-  {catType : $('#catType').val(), catText = $('#catText').val()});
+  {catType : $('#catType').val(), catText : $('#catText').val()});
+    post.jxhr.done(function (res) {
+        $('#catTable').html(res); 
+    });
+});
+// manage categories del category
+$(document).on('click', '#delCategory', function () {
+  var post = new ajxobj ('/farinwatab/admin/delete_category/', 'POST', 'HTML', 
+  {delCatTypeId : $('#catType').val(), delCatId : $(this).val()});
     post.jxhr.done(function (res) {
         $('#catTable').html(res); 
     });
