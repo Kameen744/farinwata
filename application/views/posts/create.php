@@ -5,11 +5,11 @@
             <legend>New post</legend>
             <div class="form-group">
                 <label for="PostTitle">Title</label>
-                <input type="text" class="form-control" name="PostTitle" id="PostTitle" required placeholder="Post title">
+                <input type="text" class="form-control" name="PostTitle" id="PostTitle" placeholder="Post title">
             </div>
             <div class="form-group">
                 <label for="PostContent">Body</label>
-                <textarea name="PostContent" id="PostContent" class="form-control" rows="6" required placeholder="Post content"></textarea>
+                <textarea name="PostContent" id="PostContent" class="form-control" rows="6" placeholder="Post content"></textarea>
             </div>
             <div class="form-group">
                 <label for="PostType">Type</label>
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label for="PostFile">Image</label>
-                <input type="file" class="form-control" id="PostFile" name="PostFile" required>
+                <input type="file" class="form-control" id="PostFile" name="PostFile">
             </div>
             <button type="Post" name="SubmitPost" id="SubmitPost" class="btn btn-primary btn-block">Submit</button>
         </form>

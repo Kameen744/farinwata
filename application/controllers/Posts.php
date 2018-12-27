@@ -39,14 +39,14 @@
             $this->form_validation->set_rules('PostContent', 'Content', 'required');
             $this->form_validation->set_rules('PostType', 'Type', 'required');
             $this->form_validation->set_rules('PostCategory', 'Category', 'required');
-            $this->form_validation->set_rules('PostFile', 'Image', 'required');
+            // $this->form_validation->set_rules('PostFile', 'Image', 'required');
 
-           if($this->form_validation->run() === FALSE){
+            if($this->form_validation->run() === FALSE){
                 echo validation_errors();
-           } else {
+            } else {
                 $this->Post_model->create_post();
-           }
-
+            }
+         
         }
 
     }

@@ -35,93 +35,91 @@ class Post_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
-    public function Resize_image($width = 0, $height = 0, $quality = 90, $filename_in = null, $filename_out = null)
+    public function Resize_image($width, $height, $quality = 90, $filename_in, $filename_out, $extension)
     {
-        $this->Filename = $filename_in;
-        $this->Extension = strtolower($this->Get_file_extension($this->Filename));
+        $configI['image_library'] = 'gd2';
+        $configI['source_image']    = $filename_in;
+        $configI['create_thumb'] = FALSE;
+        $configI['maintain_ratio'] = FALSE;
+        $configI['width']    = $width;
+        $configI['height']  = $height;
+        $configI['new_image'] = $filename_out;    
+        $this->load->library('image_lib', $configI);
 
-        $size = getimagesize($this->Filename);
-        $ratio = $size[0] / $size[1];
-        if ($ratio >= 1){
-            $scale = $width / $size[0];
-        } else {
-            $scale = $height / $size[1];
-        }
-        // make sure its not smaller to begin with!
-        if ($width >= $size[0] && $height >= $size[1]){
-            $scale = 1;
-        }
+        $this->image_lib->initialize($configI);
+        $this->image_lib->resize();
+        $this->image_lib->clear();
 
-        // echo $fileext;
-        switch ($this->Extension)
-        {
-            case "jpg":
-                $im_in = imagecreatefromjpeg($this->Filename);
-                $im_out = imagecreatetruecolor($size[0] * $scale, $size[1] * $scale);
-                imagecopyresampled($im_out, $im_in, 0, 0, 0, 0, $size[0] * $scale, $size[1] * $scale, $size[0], $size[1]);
-                imagejpeg($im_out, $filename_out, $quality);
-            break;
-            case "gif":
-                $im_in = imagecreatefromgif($this->Filename);
-                $im_out = imagecreatetruecolor($size[0] * $scale, $size[1] * $scale);
-                imagecopyresampled($im_out, $im_in, 0, 0, 0, 0, $size[0] * $scale, $size[1] * $scale, $size[0], $size[1]);
-                imagegif($im_out, $filename_out, $quality);
-            break;
-            case "png":
-                $im_in = imagecreatefrompng($this->Filename);
-                $im_out = imagecreatetruecolor($size[0] * $scale, $size[1] * $scale);
-                imagealphablending($im_in, true); // setting alpha blending on
-                imagesavealpha($im_in, true); // save alphablending setting (important)
-                imagecopyresampled($im_out, $im_in, 0, 0, 0, 0, $size[0] * $scale, $size[1] * $scale, $size[0], $size[1]);
-                imagepng($im_out, $filename_out, 9);
-            break;
-        }
-        imagedestroy($im_out);
-        imagedestroy($im_in);
-    }
 
-    private function resize_img ($img, $width, $height, $post) {
-        $config['image_library'] = 'gd2';
-        $config['source_image'] = $img;
-        $config['create_thumb'] = TRUE;
-        $config['maintain_ratio'] = TRUE;
-        $config['width'] = $width;
-        $config['height'] = $height;
+        // $this->Filename = $filename_in;
 
-        $this->load->library('image_lib', $config);
-    }
+        // $size = getimagesize($this->Filename);
+        // $ratio = $size[0] / $size[1];
+        // if ($ratio >= 1){
+        //     $scale = $width / $size[0];
+        // } else {
+        //     $scale = $height / $size[1];
+        // }
+        // // make sure its not smaller to begin with!
+        // if ($width >= $size[0] && $height >= $size[1]){
+        //     $scale = 1;
+        // }
 
-    public function do_upload($post){
-        $config['file_name']            = $post .'.jpg';
-        $config['upload_path']          = './assets/img/uploads';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
-
-        $this->load->library('upload', $config);
-
-        if ( ! $this->upload->do_upload('userfile')) {
-                $error = array('error' => $this->upload->display_errors());
-
-                $this->load->view('upload_form', $error);
-        } else {
-                $data = array('upload_data' => $this->upload->data());
-
-                $this->load->view('upload_success', $data);
-        }
+        // // echo $fileext;
+        // switch ($extension)
+        // {
+        //     case "image/jpeg":
+        //         $im_in = imagecreatefromjpeg($this->Filename);
+        //         $im_out = imagecreatetruecolor($size[0] * $scale, $size[1] * $scale);
+        //         imagecopyresampled($im_out, $im_in, 0, 0, 0, 0, $size[0] * $scale, $size[1] * $scale, $size[0], $size[1]);
+        //         imagejpeg($im_out, $filename_out, $quality);
+        //     break;
+        //     case "image/gif":
+        //         $im_in = imagecreatefromgif($this->Filename);
+        //         $im_out = imagecreatetruecolor($size[0] * $scale, $size[1] * $scale);
+        //         imagecopyresampled($im_out, $im_in, 0, 0, 0, 0, $size[0] * $scale, $size[1] * $scale, $size[0], $size[1]);
+        //         imagegif($im_out, $filename_out, $quality);
+        //     break;
+        //     case "image/png":
+        //         $im_in = imagecreatefrompng($this->Filename);
+        //         $im_out = imagecreatetruecolor($size[0] * $scale, $size[1] * $scale);
+        //         imagealphablending($im_in, true); // setting alpha blending on
+        //         imagesavealpha($im_in, true); // save alphablending setting (important)
+        //         imagecopyresampled($im_out, $im_in, 0, 0, 0, 0, $size[0] * $scale, $size[1] * $scale, $size[0], $size[1]);
+        //         imagepng($im_out, $filename_out, 9);
+        //     break;
+        // }
+        // imagedestroy($im_out);
+        // imagedestroy($im_in);
     }
 
     public function create_post() {
-        $data = [
-            $PostTitle => $this->input->post('PostTitle'),
-            $PostContent => $this->input->post('PostContent'),
-            $PostType => $this->input->post('PostType'),
-            $PostCategory => $this->input->post('PostCategory'),
-            $PostFile => $this->input->post('PostFile'),
-        ];
+        $this->db->select('*, COUNT(*) as count');
+        $this->db->from('news');
+        $recs = $this->db->get()->row_array();
 
-        return $this->db->insert('news', $data);
+        $post = 'Post_' .$recs['count'];
+        $savurl = './assets/img/'.$post;
+        $fileName = $_FILES['PostFile']['tmp_name'];
+        $fileType= $_FILES['PostFile']['type'];
+
+        $data = [
+            'News_Title' => $this->input->post('PostTitle'),
+            'Description' => $this->input->post('PostContent'),
+            'Img_url' => $post,
+            'Authors_id' => 1,
+            'Category_id' => $this->input->post('PostCategory'),
+            'Category_News_Type_id' => $this->input->post('PostType'),
+            // $PostFile => $this->input->post('PostFile')
+        ];
+        
+        if($this->db->insert('news', $data)) {
+            $this->Resize_image(600, 345, 90, $fileName, $savurl .'lg.jpg', $fileType);
+            $this->Resize_image(400, 228, 90, $fileName, $savurl .'md.jpg', $fileType);
+            $this->Resize_image(200, 114, 90, $fileName, $savurl .'sm.jpg', $fileType);
+            echo 'Success';
+        }
+        
     }
 
 }
