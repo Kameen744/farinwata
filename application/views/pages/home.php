@@ -2,176 +2,200 @@
 function G_img($img, $size) {
     return  base_url() .'assets/img/uploads/'.$img .$size.'.jpg';
 }?>
-
+<?php if(isset($vids) || isset($hauvids)):?>
 <div class="row">
-    <div class="col-md-6 pl-0 pr-1">
-        <div class="card">
-            <?php
-            echo'
-            <img class="card-img-top" src="'.G_img($locNws[0]['Img_Url'], 'lg').'" alt="">
-            <div class="imagenews p-2">
-                <h4>
-                    <a href="'.site_url('/posts/read/' .$locNws[0]['id']).'" class="text-white">
-                    '.$locNws[0]['News_Title'].'
-                    </a>
-                </h4>
+    <div class="col-12 p-0" style="border-bottom: 2px solid #dc3545;">
+        <div class="row pl-3 d-flex justify-content-between">
+            <div class="col-6 m-0 p-0 d-flex justify-content-start">
+                <div class="w-auto px-2 bg-danger text-white w-25">
+                    Videos
+                </div>
+                <div class="w-auto pl-3" id="engVideos">
+                    <li class="li px-2 hnd text-danger active">ENGLISH</li>
+                </div>
+                <div class="w-auto pl-3 pr-5" id="hauVideos">
+                    <li class="li px-2 hnd text-danger">HAUSA</li>
+                </div>
             </div>
-            '
-            ?>
+            <div class="col-6 m-0 pr-3 d-flex justify-content-end">
+                <div class="d-inline-flex">
+                    <!-- <li class="li bg-danger hnd px-2 mr-1" id="" value="">
+                        <i class="text-white fa fa-chevron-left"></i>
+                    </li> -->
+                    <!-- <li class="li bg-danger hnd px-2" id="" value="">
+                        Videos
+                    </li> -->
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-md-6 pr-1 pl-1 pt-0">
-        <div class="row">
-            <div class="col-6 pr-1">
+    <div class="col-12 m-0 pr-2 pl-3">
+        <div class="row" id="vidCont">
+            <div class="col-md-6 pl-0 pr-1">
                 <div class="card">
-                <?php
-                    echo'
-                    <img class="card-img-top" src="'.G_img($locNws[1]['Img_Url'], 'md').'" alt="">
-                    <div class="imagenews p-2">
-                        <h6>
-                            <a href="'.site_url('/posts/read/' .$locNws[1]['id']).'" class="text-white">
-                            '.$locNws[1]['News_Title'].'
+                    <img class="card-img-top" src="https://img.youtube.com/vi/<?= $hauvids->items[0]->id->videoId?>/mqdefault.jpg" alt="">
+                    <div class="imagenews p-1">
+                        <h4>
+                            <a class="play_vid text-white" href="https://www.youtube.com/watch?v=<?= $hauvids->items[0]->id->videoId?>" class="text-white">
+                                <?= ucfirst($hauvids->items[0]->snippet->title)?>
                             </a>
-                        </h6>
+                        </h4>
                     </div>
-                    '
-                ?>
                 </div>
             </div>
-            <div class="col-6 pl-1">
-                <div class="card">
-                <?php
-                    echo'
-                    <img class="card-img-top" src="'.G_img($locNws[2]['Img_Url'], 'md').'" alt="">
-                    <div class="imagenews p-2">
-                       <h6>
-                            <a href="'.site_url('/posts/read/' .$locNws[2]['id']).'" class="text-white">
-                            '.$locNws[2]['News_Title'].'
-                            </a>
-                        </h6>
+            <div class="col-md-6 pr-1 pl-1 pt-0">
+                <div class="row">
+                    <div class="col-6 pr-1">
+                        <div class="card">  
+                            <img class="card-img-top" src="https://img.youtube.com/vi/<?= $vids->items[0]->id->videoId?>/mqdefault.jpg" alt="">
+                            <div class="imagenews p-2">
+                                <h6>
+                                    <a class="play_vid text-white" href="https://www.youtube.com/watch?v=<?= $vids->items[0]->id->videoId?>" class="text-white">
+                                        <?= ucfirst($vids->items[0]->snippet->title)?>
+                                    </a>
+                                </h6>
+                            </div>
+                        </div>
                     </div>
-                    '
-                ?>
+                    <div class="col-6 pl-1">
+                        <div class="card">
+                            <img class="card-img-top" src="https://img.youtube.com/vi/<?= $vids->items[1]->id->videoId?>/mqdefault.jpg" alt="">
+                            <div class="imagenews p-2">
+                                <h6>
+                                    <a class="play_vid text-white" href="https://www.youtube.com/watch?v=<?= $vids->items[1]->id->videoId?>" class="text-white">
+                                        <?= ucfirst($vids->items[1]->snippet->title)?>
+                                    </a>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row pt-2">
-            <div class="col-6 pr-1">
-                <div class="card">
-                <?php
-                    echo'
-                    <img class="card-img-top" src="'.G_img($locNws[3]['Img_Url'], 'md').'" alt="">
-                    <div class="imagenews p-2">
-                        <h6>
-                            <a href="'.site_url('/posts/read/' .$locNws[3]['id']).'" class="text-white">
-                            '.$locNws[3]['News_Title'].'
-                            </a>
-                        </h6>
+                <div class="row pt-2">
+                    <div class="col-6 pr-1">
+                        <div class="card">
+                            <img class="card-img-top" src="https://img.youtube.com/vi/<?= $vids->items[2]->id->videoId?>/mqdefault.jpg" alt="">
+                            <div class="imagenews p-2">
+                                <h6>
+                                    <a class="play_vid text-white" href="https://www.youtube.com/watch?v=<?= $vids->items[2]->id->videoId?>" class="text-white">
+                                        <?= ucfirst($vids->items[2]->snippet->title)?>
+                                    </a>
+                                </h6>
+                            </div>
+                        </div>
                     </div>
-                    '
-                ?>
-                </div>
-            </div>
-            <div class="col-6 pl-1">
-                <div class="card">
-                <div class="nws-tag">
-                    <span class="notify-badge-in">News</span>
-                </div>
-                <?php
-                    echo'
-                    <img class="card-img-top" src="'.G_img($locNws[4]['Img_Url'], 'md').'" alt="">
-                    <div class="imagenews p-2">
-                        <h6>
-                            <a href="'.site_url('/posts/read/' .$locNws[4]['id']).'" class="text-white">
-                            '.$locNws[4]['News_Title'].'
-                            </a>
-                        </h6>
+                    <div class="col-6 pl-1">
+                        <div class="card">
+                        <div class="nws-tag">
+                            <span class="notify-badge-in">Farinwata Video</span>
+                        </div>
+                        <img class="card-img-top" src="https://img.youtube.com/vi/<?= $vids->items[3]->id->videoId?>/mqdefault.jpg" alt="">
+                            <div class="imagenews p-2">
+                                <h6>
+                                    <a class="play_vid text-white" href="https://www.youtube.com/watch?v=<?= $vids->items[3]->id->videoId?>" class="text-white">
+                                        <?= ucfirst($vids->items[3]->snippet->title)?>
+                                    </a>
+                                </h6>
+                            </div>
+                        </div>
                     </div>
-                    '
-                ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php endif; ?>
  <!-- /nws col -->
  <div class="row mt-2">
     <!-- nws col-8 -->
-    <div class="col-md-8 pb-2 shadow-lg rounded" id="news">
-        <div class="row">
-            <div class="col-12 p-0" style="border-bottom: 2px solid #dc3545;">
-                <div class="row pl-3 d-flex justify-content-between">
-                    <div class="w-auto p-0 px-2 bg-danger text-white">NEWS</div>
-                    <div class="pr-3 d-inline-flex">
-                        <li class="li bg-danger hnd px-2 mr-1" id="newsPrev" value="<?= $lmt['lcnwslmt']?>">
-                            <i class="text-white fa fa-chevron-left"></i>
-                        </li>
-                        <li class="li bg-danger hnd px-2" id="newsNext" value="<?= $lmt['lcnwslmt']?>">
-                            <i class="text-white fa fa-chevron-right"></i>
-                        </li>
+    <div class="col-md-8 pb-4 shadow-lg rounded">
+        <div class="col-md-12 p-0 shadow-lg rounded" id="news">
+            <div class="row">
+                <div class="col-12 p-0" style="border-bottom: 2px solid #dc3545;">
+                    <div class="row pl-3 d-flex justify-content-between">
+                        <div class="w-auto p-0 px-2 bg-danger text-white">NEWS</div>
+                        <div class="pr-3 d-inline-flex">
+                            <li class="li bg-danger hnd px-2 mr-1" id="newsPrev" value="<?= $lmt['lcnwslmt']?>">
+                                <i class="text-white fa fa-chevron-left"></i>
+                            </li>
+                            <li class="li bg-danger hnd px-2" id="newsNext" value="<?= $lmt['lcnwslmt']?>">
+                                <i class="text-white fa fa-chevron-right"></i>
+                            </li>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 p-0 pr-3 pb-2">          
-                <?php 
+            <div class="row">
+                <div class="col-md-6 p-0 pr-3 pb-2">          
+                    <?php 
+                        echo '
+                        <div class="card pb-1">
+                        <img class="card-img-top" src="'.G_img($locNws[0]['Img_Url'], 'md').'" alt="'.$locNws[0]['News_Title'].'">
+                        <div class="card-body">
+                            <h4 class="card-title col-cell">
+                                <a href="'.site_url('/posts/read/' .$locNws[0]['id']).'" class="text-dark">
+                                '.word_limiter($locNws[0]['News_Title'], 10).'
+                                </a>
+                            </h4>
+                        </div>
+                        </div>
+                        ';
+                    ?>
+                </div>
+                <div class="col-md-6 p-0 pl-2">
+                <?php
                     echo '
-                    <div class="card pb-1">
-                    <img class="card-img-top" src="'.G_img($locNws[5]['Img_Url'], 'md').'" alt="'.$locNws[5]['News_Title'].'">
-                    <div class="card-body">
-                        <h4 class="card-title col-cell">
-                            <a href="'.site_url('/posts/read/' .$locNws[5]['id']).'" class="text-dark">
-                            '.word_limiter($locNws[5]['News_Title'], 10).'
-                            </a>
-                        </h4>
+                    <div class="row d-flex justify-content-between">  
+                        <div class="col-4 p-0 m-0">
+                            <img class="card-img-top" src="'.G_img($locNws[1]['Img_Url'], 'sm').'" alt="">
+                        </div>
+                        <div class="col-8 p-0 pl-2">
+                            <h6 class="card-title pr-3">
+                                <a href="'.site_url('/posts/read/' .$locNws[1]['id']).'" class="text-dark">
+                                '.word_limiter($locNws[1]['News_Title'], 15).'
+                                </a>
+                            </h6>
+                        </div>
                     </div>
+                    <div class="row d-flex justify-content-between pt-2">
+                        <div class="col-4 p-0 m-0">
+                            <img class="card-img-top" src="'.G_img($locNws[2]['Img_Url'], 'sm').'" alt="">
+                        </div>
+                        <div class="col-8 p-0 pl-2">
+                            <h6 class="card-title pr-3">
+                                <a href="'.site_url('/posts/read/' .$locNws[2]['id']).'" class="text-dark">
+                                '.word_limiter($locNws[2]['News_Title'], 15).'
+                                </a>
+                            </h6>
+                        </div>
                     </div>
-                    ';
-                ?>
-            </div>
-            <div class="col-md-6 p-0 pl-2">
-            <?php
-                echo '
-                <div class="row d-flex justify-content-between">  
-                    <div class="col-4 p-0 m-0">
-                        <img class="card-img-top" src="'.G_img($locNws[6]['Img_Url'], 'sm').'" alt="">
+                    <div class="row d-flex justify-content-between pt-2">
+                        <div class="col-4 p-0 m-0">
+                            <img class="card-img-top" src="'.G_img($locNws[3]['Img_Url'], 'sm').'" alt="">
+                        </div>
+                        <div class="col-8 p-0 pl-2">
+                            <h6 class="card-title pr-3">
+                                <a href="'.site_url('/posts/read/' .$locNws[3]['id']).'" class="text-dark">
+                                '.word_limiter($locNws[3]['News_Title'], 15).'
+                                </a>
+                            </h6>
+                        </div>
                     </div>
-                    <div class="col-8 p-0 pl-2">
-                        <h6 class="card-title pr-3">
-                            <a href="'.site_url('/posts/read/' .$locNws[6]['id']).'" class="text-dark">
-                            '.word_limiter($locNws[6]['News_Title'], 15).'
-                            </a>
-                        </h6>
+                    <div class="row d-flex justify-content-between pt-2">
+                        <div class="col-4 p-0 m-0">
+                            <img class="card-img-top" src="'.G_img($locNws[4]['Img_Url'], 'sm').'" alt="">
+                        </div>
+                        <div class="col-8 p-0 pl-2">
+                            <h6 class="card-title pr-3">
+                                <a href="'.site_url('/posts/read/' .$locNws[4]['id']).'" class="text-dark">
+                                '.word_limiter($locNws[4]['News_Title'], 15).'
+                                </a>
+                            </h6>
+                        </div>
                     </div>
+                        ';
+                    ?>
                 </div>
-                <div class="row d-flex justify-content-between pt-2">
-                    <div class="col-4 p-0 m-0">
-                        <img class="card-img-top" src="'.G_img($locNws[7]['Img_Url'], 'sm').'" alt="">
-                    </div>
-                    <div class="col-8 p-0 pl-2">
-                        <h6 class="card-title pr-3">'.word_limiter($locNws[7]['News_Title'], 14).'</h6>
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-between pt-2">
-                    <div class="col-4 p-0 m-0">
-                        <img class="card-img-top" src="'.G_img($locNws[8]['Img_Url'], 'sm').'" alt="">
-                    </div>
-                    <div class="col-8 p-0 pl-2">
-                        <h6 class="card-title pr-3">'.word_limiter($locNws[8]['News_Title'], 14).'</h6>
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-between pt-2">
-                    <div class="col-4 p-0 m-0">
-                        <img class="card-img-top" src="'.G_img($locNws[9]['Img_Url'], 'sm').'" alt="">
-                    </div>
-                    <div class="col-8 p-0 pl-2">
-                        <h6 class="card-title pr-3">'.word_limiter($locNws[9]['News_Title'], 14).'</h6>
-                    </div>
-                </div>
-                    ';
-                ?>
             </div>
         </div>
 
@@ -615,4 +639,5 @@ function G_img($img, $size) {
     ';?>
     </div> 
 </div> 
+<div id="my_player"><div>
 

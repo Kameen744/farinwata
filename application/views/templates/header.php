@@ -3,10 +3,12 @@
   <head>
     <title>farinwatatv.ng</title>
     <meta charset="utf-8">
+    <meta name="description" content="We are in News, Current Affairs, Entertainment (Movies, Drama, Soap Opera, Musicals, Sports, Talk shows, Home Videos etc.) and Documentaries Cable TV broadcasting on Startimes Network on DTT Channel 178 and DTH Channel 470."/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.css">
     <link href="<?php echo base_url();?>assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
+    <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
   </head>
   <body style="max-height: 90vh;">
     <header>
@@ -21,8 +23,14 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="<?php echo base_url()?>home">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url()?>programs">Programs</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Videos
+                    </a>
+                    <ul class="dropdown-menu main-bg" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item main-bg text-white" href="<?php echo base_url()?>englishvids">English</a></li>
+                        <li><a class="dropdown-item main-bg text-white" href="<?php echo base_url()?>hausavids">Hausa</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

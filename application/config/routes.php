@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'pages/view';
 $route['admin'] = 'admin/index';
 $route['reporter'] = 'reporter/index';
+$route['youtube'] = 'youtube/index';
 // $route['admin/new_user'] = 'admin/new_user';
 // $route['posts/create'] = 'posts/create';
 // $route['posts/get_category'] = 'posts/get_category';

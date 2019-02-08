@@ -1,13 +1,9 @@
 $.ajaxSetup({
   beforeSend:function(){
-      // show gif here, eg:
-      // $("#loading").show();
-      console.log('beforesend');
+    $.LoadingOverlay("show");
   },
   complete:function(){
-      // hide gif here, eg:
-      // $("#loading").hide();
-      console.log('complete req');
+    $.LoadingOverlay("hide");
   }
 });
 // $.ajax({
@@ -61,6 +57,23 @@ $(document).ready(function() {
       alterClass();
     });
     alterClass();
+
+    // $.getScript('//www.youtube.com/iframe_api');
+
+    $('.play_vid').on('click',function(e){
+
+      e.preventDefault();
+      var video_url = $(this).attr('href');
+      var video_id = video_url.substring(video_url.search('=')+1,video_url.length);
+      $('#my_player DIV').html('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + video_id + '" frameborder="0" allowfullscreen></iframe>');
+      $('#my_player').fadeIn(500);
+    
+    });
+    
+    $('#my_player').on('click',function(e){
+      $('#my_player').fadeOut(500);
+      $('#my_player DIV').empty();
+    });
 });
 // ajax call obj
 function ajxobj (url, method, dataType, data) {
@@ -370,7 +383,7 @@ $(document).on('click', '#vidNext', function () {
 });
 
 $(document).on('click', '#vidPrev', function () {
-  console.log($(this).val());
+  
   if($(this).val() >= 0){
     var post = new ajxobj ('/farinwatab/posts/prev_post/', 'POST', 'HTML',
     {vidPrev : $(this).val(), vidNextt : $('#vidNext').val()});
@@ -401,3 +414,62 @@ $(document).on('click', '#intSportTab', function () {
       }else {$('#lcintspt').html(res);}
     });
 });
+
+$(document).on('click', '#engVideos', function () {
+  var post = new ajxobj ('/farinwatab/posts/next_post/', 'POST', 'HTML', {engVideos : 'engVideos'});
+    post.jxhr.done(function (res) {
+      if(res == null || res == ''){
+  
+      }else {$('#vidCont').html(res);}
+    });
+});
+
+$(document).on('click', '#hauVideos', function () {
+  var post = new ajxobj ('/farinwatab/posts/next_post/', 'POST', 'HTML', {hauVideos : 'hauVideos'});
+    post.jxhr.done(function (res) {
+      if(res == null || res == ''){
+  
+      }else {$('#vidCont').html(res);}
+    });
+});
+
+
+
+//For video
+$(document).on('click', '.vidlnks', function () {
+  var id = $(this).attr('id');
+  getYtPlayer(id);
+  // getplayer(id);
+}); 
+
+
+function getYtPlayer(id) {
+$('#ytPlayer').html(`
+<iframe class="w-100 h-100" src="https://www.youtube.com/embed/${id}?autoplay=1 "allowfullscreen="allowfullscreen"</iframe> `);
+}
+function getplayer(videoId) {
+  player = new YT.Player('ytPlayer', {
+    height: '390',
+    width: '640',
+    videoId: videoId,
+    events: {
+      'onReady': onPlayerReady
+    }
+  });
+
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  var done = false;
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+      setTimeout(stopVideo, 6000);
+      done = true;
+    }
+  }
+
+  function stopVideo() {
+    player.stopVideo();
+  }
+}

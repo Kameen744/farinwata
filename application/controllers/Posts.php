@@ -275,6 +275,29 @@
                 $this->load->view('posts/more', $exData);
             }
             
+            if(isset($_POST['hauVideos'])) {
+                $channelId = 'UCaxnujKbsu2Z-64c758bnag';
+                $hauId = 'UC8i3e77KKNJqWAcC2DCGixA';
+                $maxResults = 5;
+                $API_key = 'AIzaSyA9hRVWls4xOSaWymLukJBFbuu8rXnPejk';
+                $hauvideo_list = json_decode(file_get_contents('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$hauId.'&maxResults='.$maxResults.'&key='.$API_key.''));        
+        
+                $exData['mainVids'] = $hauvideo_list;
+                $this->load->view('posts/more', $exData);
+            }
+
+            if(isset($_POST['engVideos'])) {
+                $channelId = 'UCaxnujKbsu2Z-64c758bnag';
+                $hauId = 'UC8i3e77KKNJqWAcC2DCGixA';
+                $maxResults = 5;
+                $API_key = 'AIzaSyA9hRVWls4xOSaWymLukJBFbuu8rXnPejk';
+
+                $video_list = json_decode(file_get_contents('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channelId.'&maxResults='.$maxResults.'&key='.$API_key.''));
+                
+                $exData['mainVids'] = $video_list;
+                $this->load->view('posts/more', $exData);
+            }
+            
         }
 
         public function prev_post() {
