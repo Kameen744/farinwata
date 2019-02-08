@@ -31,14 +31,14 @@
         }
 
         public function add_category ($type, $cat) {
-echo $type .' : ' .$cat;
-            // $ins = $this->db->insert('category', ['Categories' => $type, 'News_Type_id' => $cat]);
-            // print_r($ins);
-            // if($ins) {
-            //     return TRUE;
-            // } else {
-            //     return FALSE;
-            // }
+          
+            $ins = $this->db->insert('category', ['Categories' => $cat, 'News_Type_id' => $type]);
+        
+            if($ins) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
         
         }
 

@@ -19,4 +19,17 @@
             }
         }
 
+        public function reporter_login ($username, $password) {
+            $this->db->select('*');
+            $this->db->from('authors');
+            $this->db->where('User_Name', $username);
+            $this->db->where('User_Password', $password);
+            $result = $this->db->get()->row_array();
+            if($result) {
+                return $result;
+            } else {
+               return FALSE;
+            }
+        }
+
     }

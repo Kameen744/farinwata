@@ -22,16 +22,13 @@ function G_img($img, $size) {
             <div class="col-12 p-0" style="border-bottom: 2px solid #dc3545;">
                 <div class="row pl-3 d-flex justify-content-between">
                     <div class="w-auto pr-2 pl-2 bg-danger text-white w-25">
-                        RELATED NEWS
-                    </div>
-                    <div class="w-auto pr-4">
-                        <a href="" class="text-danger"><span class="fas fa-chevron-left">&nbsp;&nbsp;</span></a>
-                        <a href="" class="text-danger">&nbsp;&nbsp;<span class="fas fa-chevron-right"></span></a>
+                        <?php echo strtoupper($relatedNws[0]['Categories']);?>
                     </div>
                 </div>
             </div>
         </div>
-        <?php foreach($intNws as $nws):?>
+        <?php foreach($relatedNws as $nws):?>
+        
             <?php echo '
             <div class="row d-flex justify-content-between pt-2">
                 <div class="col-3 p-0 m-0">
@@ -39,13 +36,12 @@ function G_img($img, $size) {
                 </div>
                 <div class="col-9 pl-2">
                     <h6 class="card-title">
-                        <a href="'.site_url('/posts/' .$nws['id']).'" class="text-dark">
+                        <a href="'.site_url('/posts/read/' .$nws['id']).'" class="text-dark">
                         '.word_limiter($nws['News_Title'], 9).'
                         </a>
                     </h6>
                 </div>
-            </div>
-            ';
+            </div>';
             ?>
         <?php endforeach; ?>
         <div class="row">

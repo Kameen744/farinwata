@@ -15,7 +15,7 @@ class Page_model extends CI_Model
         return $this->row_array();
     }
 
-    function getPostByCat($type, $cat, $limit, $offset){
+    public function getPostByCat($type, $cat, $limit, $offset){
         $this->db->select('`News_Title`, `Description`, `News_Type`, `Categories`, 
         `Station_Name`, `Created_At`, `Img_Url`, Nws.id');
         $this->db->from('news_type AS Ntp');
@@ -29,6 +29,14 @@ class Page_model extends CI_Model
         $this->db->order_by('Nws.id', 'DESC');
         return $this->db->get()->result_array();
     }
+
+    public function getVideos($limit, $offset) {
+        $this->db->select('*');
+        $this->db->from('videos');
+        $this->db->limit($limit, $offset);
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get()->result_array();
+    }    
 
     // $nws = $this->getRows("SELECT `News_Title`, `Description`, `News_Type`, `Categories`, 
     //     `Station_Name`, `Created_At`, `Img_Url`, Nws.id FROM `news_type` AS Ntp 

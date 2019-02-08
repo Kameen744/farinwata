@@ -6,20 +6,40 @@
                 show_404();
             }
 
+            $lmt = ['lcnwslmt' => 10, 'lcpollmt' => 6, 'lcbuslmt' => 1, 'lchltlmt' => 1, 
+            'lcentlmt' => 3, 'lcsprlmt' => 2, 'intnwslmt' => 5, 'intsprlmt' => 2, 'vidlmt' => 3];  
+            
+            $data['lmt'] = $lmt;
+
             $data['title'] = ucfirst($page);
 
-            $data['locNws'] = $this->Page_model->getPostByCat('Local', 'News', 10, 0);
-            $data['locPol'] = $this->Page_model->getPostByCat('Local', 'Politics', 10, 0);
-            $data['locBus'] = $this->Page_model->getPostByCat('Local', 'Business', 10, 0);
-            $data['locHlth'] = $this->Page_model->getPostByCat('Local', 'Health', 10, 0);
-            $data['locSprt'] = $this->Page_model->getPostByCat('Local', 'Sport', 10, 0);
-            $data['intNws'] = $this->Page_model->getPostByCat('International', 'News', 10, 0);
-            $data['intSpt'] = $this->Page_model->getPostByCat('International', 'Sport', 10, 0);
+            $data['locNws'] = $this->Page_model->getPostByCat('Local', 'News', $lmt['lcnwslmt'], 0);
+            $data['locPol'] = $this->Page_model->getPostByCat('Local', 'Politics', $lmt['lcpollmt'], 0);
+            $data['locBus'] = $this->Page_model->getPostByCat('Local', 'Business', $lmt['lcbuslmt'], 0);
+            $data['locHlth'] = $this->Page_model->getPostByCat('Local', 'Health', $lmt['lchltlmt'], 0);
+            $data['locEnt'] = $this->Page_model->getPostByCat('Local', 'Entertainment', $lmt['lcentlmt'], 0);
+            $data['locSprt'] = $this->Page_model->getPostByCat('Local', 'Sport', $lmt['lcsprlmt'], 0);
+            $data['intNws'] = $this->Page_model->getPostByCat('International', 'News', $lmt['intnwslmt'], 0);
+            $data['intSpt'] = $this->Page_model->getPostByCat('International', 'Sport', $lmt['intsprlmt'], 0);
+
+            $data['Videos'] = $this->Page_model->getVideos($lmt['vidlmt'], 0);
             
             // $data['posts'] = $this->Page_model->get_posts();
             $this->load->helper('text');
             $this->load->view('templates/header');
             $this->load->view('pages/' .$page, $data);
+            $this->load->view('templates/footer');
+        }
+
+        public function view_slug($type = null, $slug = null) {
+            if($type === 'foreign'){
+                $type = 'international';
+            }
+            $data['locNws'] = $this->Page_model->getPostByCat(ucfirst($type), ucfirst($slug), 10, 0);
+            
+            $this->load->helper('text');
+            $this->load->view('templates/header');
+            $this->load->view('pages/slug', $data);
             $this->load->view('templates/footer');
         }
     }

@@ -2,7 +2,7 @@
     <div class="col-md-12">
     <?php echo validation_errors();?>
         <form action="<?php echo base_url() .'posts/create_post';?>" method="POST" id="NewPostForm" role="form">
-            <legend>New post</legend>
+        
             <div class="form-group">
                 <label for="PostTitle">Title</label>
                 <input type="text" class="form-control" name="PostTitle" id="PostTitle" placeholder="Post title">

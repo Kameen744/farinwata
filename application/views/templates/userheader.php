@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin</title>
+    <title>farinwatatv.ng</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">

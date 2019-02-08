@@ -1,5 +1,5 @@
 <?php
-    class admin extends CI_Controller 
+    class Admin extends CI_Controller 
     {
         public function index () {
             $data['title'] = 'Admin Login';
